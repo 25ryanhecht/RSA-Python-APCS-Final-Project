@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 import random
 
-# TODO: make better, make faster
 # TODO: change to use 4096bit
 # TODO: find d
 
 def gcd(a, b):
     # find gcd of a & b
     # uses the euclidean algorithm
-    while b:
+    while b: # b != 0
         a, b = b, a % b
     return a
 
 def millerRabin(n, k):
+    """
+    A modified version of the code found at:
+    https://rosettacode.org/wiki/Miller–Rabin_primality_test
+    """
+
     # use the Miller-Rabin Primality Test to return True if n is probably prime, or False if n is definitely composite
     # uses k rounds
 
