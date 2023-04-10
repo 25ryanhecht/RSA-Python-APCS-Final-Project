@@ -13,7 +13,7 @@ def gcd(a, b):
 
 def millerRabin(n, k):
     """
-    A modified version of the code found at:
+    Based on:
     https://rosettacode.org/wiki/Miller–Rabin_primality_test
     """
 
