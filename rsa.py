@@ -75,9 +75,20 @@ def primeFinder(b, k):
         if isPrime(n, k):
             return n # n is probably prime, so return n
 
+def encrypt(plaintext, pubKey):
+    # encrypt the given plaintext with the public key
+    e, n = pubKey # derive e and n from the public key
+
+    ciphertext = [] # encrypted text stored as a list of characters
+
+    for char in plaintext:
+        ciphertext.append(pow(ord(char), e, n))
+
+    return ciphertext
+
 if __name__ == "__main__":
-    p = primeFinder(1024, 46) # find a prime
-    q = primeFinder(1024, 46) # find a prime
+    p = primeFinder(1024, 40) # find a prime
+    q = primeFinder(1024, 40) # find a prime
 
     n = p * q # compute n
 
@@ -88,4 +99,14 @@ if __name__ == "__main__":
         if gcd(e, phi) == 1:
             break
 
-    print("p: {0}\nq: {1}\nn:{2}\nphi: {3}\ne: {4}".format(p, q, n, phi, e))
+    d = pow(e, -1, phi) # compute d as the modular multiplicitive inverse of e % phi
+
+    pubKey = [e, n] # set the public key
+    privKey = [d, n] # set the private key
+
+    plaintext = input("Enter the plaintext to be encrypted: ")
+
+    # print("p: {0}\nq: {1}\nn:{2}\nphi: {3}\ne: {4}\nd: {5}".format(p, q, n, phi, e, d))
+    print("pubKey: {0}\nprivKey: {1}".format(pubKey, privKey))
+
+    print(encrypt(plaintext, pubKey))
