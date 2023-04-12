@@ -79,12 +79,23 @@ def encrypt(plaintext, pubKey):
     # encrypt the given plaintext with the public key
     e, n = pubKey # derive e and n from the public key
 
-    ciphertext = [] # encrypted text stored as a list of characters
+    ciphertext = [] # encrypted text stored as a list of integers (representing characters)
 
     for char in plaintext:
-        ciphertext.append(pow(ord(char), e, n))
+        ciphertext.append(pow(ord(char), e, n)) # calculate the new value of the character as (char^e) % n
 
-    return ciphertext
+    return ciphertext # return the encrypted message
+
+def decrypt(ciphertext, privKey):
+    # decrypt the given ciphertext using the private key
+    d, n = privKey # derive d and n from the private key
+
+    plaintext = [] # plaintext stored as a list of integers (representing characters)
+
+    for char in ciphertext:
+        plaintext.append(chr(pow(char, d, n))) # calculate the new value of the character as (char^d) % n
+
+    return ''.join(plaintext)
 
 if __name__ == "__main__":
     p = primeFinder(1024, 40) # find a prime
@@ -109,4 +120,8 @@ if __name__ == "__main__":
     # print("p: {0}\nq: {1}\nn:{2}\nphi: {3}\ne: {4}\nd: {5}".format(p, q, n, phi, e, d))
     print("pubKey: {0}\nprivKey: {1}".format(pubKey, privKey))
 
-    print(encrypt(plaintext, pubKey))
+    ciphertext = encrypt(plaintext, pubKey)
+
+    print("ciphertext: {}".format(ciphertext))
+
+    print("decrypted: {}".format(decrypt(ciphertext, privKey)))
