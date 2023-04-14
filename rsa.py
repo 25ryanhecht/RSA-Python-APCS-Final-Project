@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import random
 
-# TODO: change to use 4096bit
-# TODO: find d
+# DONE: find d
+# TODO: add writing/reading the keys to/from files
 
 def gcd(a, b):
     # find gcd of a & b
