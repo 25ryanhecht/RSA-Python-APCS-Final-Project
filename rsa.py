@@ -3,6 +3,7 @@ import random
 
 # DONE: find d
 # TODO: add writing/reading the keys to/from files
+# TODO: add more comments
 
 def gcd(a, b):
     # find gcd of a & b
