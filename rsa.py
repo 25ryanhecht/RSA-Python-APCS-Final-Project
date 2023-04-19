@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
+
 import random
 
 # DONE: find d
-# TODO: add writing/reading the keys to/from files
-# TODO: add more comments
 
 def gcd(a, b):
     # find gcd of a & b
@@ -98,14 +97,16 @@ def decrypt(ciphertext, privKey):
 
     return ''.join(plaintext)
 
-if __name__ == "__main__":
-    p = primeFinder(1024, 40) # find a prime
-    q = primeFinder(1024, 40) # find a prime
+def genKeys(b, k):
+    # generate public and private keys using primes of b bits with k rounds of the miller rabin primality test
+    p = primeFinder(b, k) # find a prime
+    q = primeFinder(b, k) # find a prime
 
     n = p * q # compute n
 
-    phi = (p - 1) * (q - 1)
+    phi = (p - 1) * (q - 1) # compute phi
 
+    # find a value of e where 2 < e < phi and gcd(e, phi) = 1
     while True:
         e = random.randrange(3, phi)
         if gcd(e, phi) == 1:
@@ -116,13 +117,4 @@ if __name__ == "__main__":
     pubKey = [e, n] # set the public key
     privKey = [d, n] # set the private key
 
-    plaintext = input("Enter the plaintext to be encrypted: ")
-
-    # print("p: {0}\nq: {1}\nn:{2}\nphi: {3}\ne: {4}\nd: {5}".format(p, q, n, phi, e, d))
-    print("pubKey: {0}\nprivKey: {1}".format(pubKey, privKey))
-
-    ciphertext = encrypt(plaintext, pubKey)
-
-    print("ciphertext: {}".format(ciphertext))
-
-    print("decrypted: {}".format(decrypt(ciphertext, privKey)))
+    return pubKey, privKey
