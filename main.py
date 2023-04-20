@@ -3,6 +3,8 @@
 import rsa
 
 def readKey(keyFile):
+    # read a key from a specified file
+
     # open, read, and close the file
     file = open(keyFile, 'r')
     key = [int(x) for x in file.read().split(', ')]
@@ -11,7 +13,7 @@ def readKey(keyFile):
 def writeKey(keyFile, key):
     # write a key to a specified file
 
-    # open, write, and, close the file
+    # open, write, and close the file
     file = open(keyFile, 'w')
     file.write('{0}, {1}'.format(key[0], key[1]))
     file.close()
