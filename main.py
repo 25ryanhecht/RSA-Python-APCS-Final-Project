@@ -20,6 +20,25 @@ def writeKey(keyFile, key):
     file.close()
     return 0
 
+def readData(encryptedFile):
+    # read encrypted data from a specified file
+
+    # open, read, and close the file
+    file = open(encryptedFile, 'r')
+    encryptedData = [int(x) for x in file.read().split(', ')]
+    file.close()
+    return encryptedData
+
+def writeData(encryptedFile, encryptedData):
+    # write encrypted data to a specified file
+
+    # open, write, and close the file
+    file = open(encryptedFile, 'w')
+    file.write(', '.join(str(char) for char in encryptedData))
+    file.close()
+    return 0
+
+
 if __name__ == "__main__":
     quit = 0 # set to 1 to quit program
     pubKey, privKey = None, None # set to None to make it easy to check if the keys are set
@@ -78,23 +97,40 @@ if __name__ == "__main__":
                 print("loading privKey from: '{}'".format(privFile))
                 privKey = readKey(privFile)
 
-        elif userInput == "e": # encrypt data
+        elif userInput == "e": # encrypt data (and save to a file)
             if pubKey == None or privKey == None: # keys are not set
                 print("Error: The keys are not defined. Please either generate keys or load them from files.")
                 continue
             else: # keys are set
                 plaintext = input("Enter a message to encrypt: ")
-                print("Encrypted data: {}".format(rsa.encrypt(plaintext, pubKey)))
+                ciphertext = rsa.encrypt(plaintext, pubKey)
+                print("Encrypted data: {}".format(ciphertext))
+
+                # save encrypted data to a file
+                encryptedFile = input("Where do you want to save the encrypted data? ['encryptedData']: ")
+
+                if encryptedFile == "": # default to 'encryptedData'
+                    print("writing encrypted data to: 'encryptedData'")
+                    writeData('encryptedData', ciphertext)
+                else:
+                    print("writing encrypted data to: '{}'".format(encryptedFile))
+                    writeData(encryptedFile, ciphertext)
 
         elif userInput == "d": # decrypt data
             if pubKey == None or privKey == None: # keys are not set
                 print("Error: The keys are not defined. Please either generate keys or load them from files.")
                 continue
             else: # keys are set
-                # get the ciphertext from user input and convert to integers
-                ciphertext = [int(x) for x in input("Paste the encrypted data (without the brackets): ").split(', ')]
+                encryptedFile = input("Where is the encrypted data located? ['encryptedData']: ")
 
-                print("Decrypted message: {}".format(rsa.decrypt(ciphertext, privKey)))
+                if encryptedFile == "": # default to 'encryptedData'
+                    ciphertext = readData('encryptedData')
+                else:
+                    ciphertext = readData(encryptedFile)
+
+                # decrypt and display data
+                plaintext = rsa.decrypt(ciphertext, privKey)
+                print("Decrypted message: {}".format(plaintext))
 
         elif userInput == "q": # quit the program
             quit = 1
