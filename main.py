@@ -8,6 +8,7 @@ def readKey(keyFile):
     # open, read, and close the file
     file = open(keyFile, 'r')
     key = [int(x) for x in file.read().split(', ')]
+    file.close()
     return key
 
 def writeKey(keyFile, key):
