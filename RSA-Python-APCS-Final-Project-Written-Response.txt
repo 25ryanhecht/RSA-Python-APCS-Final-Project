@@ -16,3 +16,33 @@
 
 	Response:
 		The name of the list is primeList. The data in this list represents all prime numbers less than 1000 and is used to test a number's primality to speed up the program by catching some composite numbers before subjecting them to a Miller-Rabin test. The list manages complexity by making it easier to store the primes and to iterate through the list. If a list was not used, there would have to be a variable for each of the primes, and an if statement concerning each variable to test all of the primes against n.
+
+3c.
+	I.
+		def isPrime(n, k):
+    	# return true if n is probably prime, and false if n is definitely composite
+    	# use k rounds in miller rabin test
+
+    	# all primes < 1000
+    	primeList = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997]
+
+    	if n in primeList: # if n is in primeList
+    	    return True # n is definitely prime
+
+    	for prime in primeList:
+    	    if n % prime == 0:
+    	        return False # n is composite
+
+    	if not millerRabin(n, k):
+    	    return False # n is definitely composite
+
+    	return True # n passed tests, it is probably prime
+
+	II.
+	    while True:
+        	n = random.SystemRandom().getrandbits(b) # random num of b bits
+        	if isPrime(n, k):
+        	    return n # n is probably prime, so return n
+
+	Response:
+		The isPrime procedure returns true if n is probably prime and false if n is definitly composite.
