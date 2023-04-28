@@ -1,5 +1,10 @@
 3a.
-	The purpose of the program is to provide a way to encrypt and decrypt data, using the RSA algorithm, in order to securly share data. It asks the user what they would like to do and provides a list of options. The user inputs the letter corresponding to the option they want and the program selects what to do accordingly. In the video, the user creates public and private keys and writes them to files, selecting the default file names by pressing enter. Then, the user loads the keys from the files and uses the keys to encrypt a string. The program writes the encrypted data to a file. The user then uses the keys to decrypt the data from the encrypted file. The program outputs the decrypted string. Finally, the user exits the program.
+	Purpose:
+		The purpose of the program is to provide a way to encrypt and decrypt data, using the RSA algorithm, in order to securly share data.
+	Functionality in video:
+		In the video, the user creates public and private keys and writes them to files, selecting the default file names by pressing enter. Then, the user loads the keys from the files and uses the keys to encrypt a string. The program writes the encrypted data to a file. The user then uses the keys to decrypt the data from the encrypted file. The program outputs the decrypted string. Finally, the user exits the program.
+	I/O in video:
+		The program asks the user what they would like to do and provides a list of options. The users inputs the letter corresponding to the option they want and the program selects what to do accordingly. In the video, the user encrypts and decrypts an inputted string. The program outputs the decrypted string at the end.
 
 3b.
 	I.

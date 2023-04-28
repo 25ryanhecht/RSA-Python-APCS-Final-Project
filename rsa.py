@@ -2,8 +2,6 @@
 
 import random
 
-# DONE: find d
-
 def gcd(a, b):
     # find gcd of a & b
     # uses the euclidean algorithm
@@ -112,7 +110,7 @@ def genKeys(b, k):
         if gcd(e, phi) == 1:
             break
 
-    d = pow(e, -1, phi) # compute d as the modular multiplicitive inverse of e % phi
+    d = pow(e, -1, phi) # compute d as the modular multiplicative inverse of e % phi
 
     pubKey = [e, n] # set the public key
     privKey = [d, n] # set the private key
