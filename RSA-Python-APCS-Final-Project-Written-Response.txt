@@ -45,4 +45,23 @@
         	    return n # n is probably prime, so return n
 
 	Response:
-		The isPrime procedure returns true if n is probably prime and false if n is definitly composite.
+		The isPrime procedure returns true if n is probably prime and false if n is definitly composite. The algorithm works by first checking if n, the number inputted to check, is in a list of all prime numbers less than 1000; if it is, then return True. Next, it checks if n is evenly divisible by any one of the numbers in the prime list; if it is, return False. Now, it checks if n passes a Miller-Rabin primality test using k, the other number inputted, rounds; if it doesn't pass, then return False. Finally, if n passed all tests, return True.
+
+3d.
+    I.
+        First call:
+            print(rsa.isPrime(991, 40))
+        Second call:
+               print(rsa.isPrime(121406804609586109980192500195425690021202257879950340703446114434025137180469691105605962685622838690139855919728629627154166923732651288087714897372406274310057126793017122333981508020431903315954632832416909560643514894908560744234235626774622912833343934403353186736822073662771396401466955030601237281327, 40))
+
+    II.
+        Condition(s) tested by the first call:
+                     The first call tests if 991 is in the list of primes; it is, so it returns True.
+        Condition(s) tested by the second call:
+                     The second call tests if n, the large number inputted, is in the prime list; it is not, so it continues. Next, it tests if n is evenly divisible by any of the numbers in the prime list; it is not, so it continues. Now it subjects the number to a Miller-Rabin primality test with 40 rounds; the test returns True, so it continues. Finally, the number has passed all tests, so it returns True.
+
+    III.
+        Result of the first call:
+               True
+        Result of the second call:
+               True
