@@ -1,8 +1,10 @@
 3a.
 	Purpose:
-		The purpose of the program is to provide a way to encrypt and decrypt data, using the RSA algorithm, in order to securly share data.
+		The purpose of the program is to provide a way to encrypt and decrypt data, using the RSA algorithm, in order to securely share data.
+
 	Functionality in video:
 		In the video, the user creates public and private keys and writes them to files, selecting the default file names by pressing enter. Then, the user loads the keys from the files and uses the keys to encrypt a string. The program writes the encrypted data to a file. The user then uses the keys to decrypt the data from the encrypted file. The program outputs the decrypted string. Finally, the user exits the program.
+
 	I/O in video:
 		The program asks the user what they would like to do and provides a list of options. The users inputs the letter corresponding to the option they want and the program selects what to do accordingly. In the video, the user encrypts and decrypts an inputted string. The program outputs the decrypted string at the end.
 
@@ -20,7 +22,14 @@
     	        return False # n is composite
 
 	Response:
-		The name of the list is primeList. The data in this list represents all prime numbers less than 1000 and is used to test a number's primality to speed up the program by catching some composite numbers before subjecting them to a Miller-Rabin test. The list manages complexity by making it easier to store the primes and to iterate through the list. If a list was not used, there would have to be a variable for each of the primes, and an if statement concerning each variable to test all of the primes against n.
+		Name of list:
+			The name of the list is primeList.
+
+		Data contained in list:
+			The data in this list represents all prime numbers less than 1000.
+
+		How list manages complexity:
+			The list manages complexity by making it easier to store the primes and to iterate through the list. If a list was not used, there would have to be a variable for each of the primes, and an if statement concerning each variable to test all of the primes against n.
 
 3c.
 	I.
@@ -50,23 +59,30 @@
         	    return n # n is probably prime, so return n
 
 	Response:
-		The isPrime procedure returns true if n is probably prime and false if n is definitly composite. The algorithm works by first checking if n, the number inputted to check, is in a list of all prime numbers less than 1000; if it is, then return True. Next, it checks if n is evenly divisible by any one of the numbers in the prime list; if it is, return False. Now, it checks if n passes a Miller-Rabin primality test using k, the other number inputted, rounds; if it doesn't pass, then return False. Finally, if n passed all tests, return True.
+		What procedure does:
+			The isPrime procedure returns true if n is probably prime and false if n is definitly composite. This contributes to the functionality of the program because the RSA algorithm requires large prime numbers. This function provides a way to determine if a number is most likely a prime number. It determines this in resonable time, even with very large numbers.
+
+		How algorithm works:
+			The algorithm works by first checking if n, the number inputted to check, is in a list of all prime numbers less than 1000; if it is, then return True. Next, it checks if n is evenly divisible by any one of the numbers in the prime list; if it is, return False. Now, it checks if n passes a Miller-Rabin primality test using k, the other number inputted, rounds; if it doesn't pass, then return False. Finally, if n passed all tests, return True.
 
 3d.
     I.
         First call:
             print(rsa.isPrime(991, 40))
+
         Second call:
                print(rsa.isPrime(121406804609586109980192500195425690021202257879950340703446114434025137180469691105605962685622838690139855919728629627154166923732651288087714897372406274310057126793017122333981508020431903315954632832416909560643514894908560744234235626774622912833343934403353186736822073662771396401466955030601237281327, 40))
 
     II.
         Condition(s) tested by the first call:
                      The first call tests if 991 is in the list of primes; it is, so it returns True.
+
         Condition(s) tested by the second call:
                      The second call tests if n, the large number inputted, is in the prime list; it is not, so it continues. Next, it tests if n is evenly divisible by any of the numbers in the prime list; it is not, so it continues. Now it subjects the number to a Miller-Rabin primality test with 40 rounds; the test returns True, so it continues. Finally, the number has passed all tests, so it returns True.
 
     III.
         Result of the first call:
                True
+
         Result of the second call:
                True
